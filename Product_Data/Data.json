@@ -1,0 +1,144 @@
+{
+    "products" : [
+        {
+            "id": 1,
+            "name": "Product 1",
+            "price": 100,
+            "isFeature": true,
+            "Category": "ring"
+        },
+        {
+            "id": 2,
+            "name": "Product 2",
+            "price": 200,
+            "isFeature": false,
+            "Category": "earring"
+        },
+        {
+            "id": 3,
+            "name": "Product 3",
+            "price": 300,
+            "isFeature": false,
+            "Category": "bracelet"
+        },
+        {
+            "id": 4,
+            "name": "Product 4",
+            "price": 400,
+            "isFeature": false,
+            "Category": "ring"
+        },
+        {
+            "id": 5,
+            "name": "Product 5",
+            "price": 500,
+            "isFeature": false,
+            "Category": "earring"
+        },
+        {
+            "id": 6,
+            "name": "Product 6",
+            "price": 600,
+            "isFeature": false,
+            "Category": "bracelet"
+        },
+        {
+            "id": 7,
+            "name": "Product 7",
+            "price": 700,
+            "isFeature": true,
+            "Category": "ring"
+        },
+        {
+            "id": 8,
+            "name": "Product 8",
+            "price": 800,
+            "isFeature": false,
+            "Category": "earring"
+        },
+        {
+            "id": 9,
+            "name": "Product 9",
+            "price": 900,
+            "isFeature": false,
+            "Category": "bracelet"
+        },
+        {
+            "id": 10,
+            "name": "Product 10",
+            "price": 1000,
+            "isFeature": false,
+            "Category": "ring"
+        },
+        {
+            "id": 11,
+            "name": "Product 11",
+            "price": 1100,
+            "isFeature": false,
+            "Category": "earring"
+        },
+        {
+            "id": 12,
+            "name": "Product 12",
+            "price": 1200,
+            "isFeature": true,
+            "Category": "bracelet"
+        },
+        {
+            "id": 13,
+            "name": "Product 13",
+            "price": 1300,
+            "isFeature": false,
+            "Category": "ring"
+        },
+        {
+            "id": 14,
+            "name": "Product 14",
+            "price": 1400,
+            "isFeature": false,
+            "Category": "earring"
+        },
+        {
+            "id": 15,
+            "name": "Product 15",
+            "price": 1500,
+            "isFeature": false,
+            "Category": "bracelet"
+        },
+        {
+            "id": 16,
+            "name": "Product 16",
+            "price": 1600,
+            "isFeature": false,
+            "Category": "ring"
+        },
+        {
+            "id": 17,
+            "name": "Product 17",
+            "price": 1700,
+            "isFeature": false,
+            "Category": "earring"
+        },
+        {
+            "id": 18,
+            "name": "Product 18",
+            "price": 1800,
+            "isFeature": false,
+            "Category": "bracelet"
+        },
+        {
+            "id": 19,
+            "name": "Product 19",
+            "price": 1900,
+            "isFeature": false,
+            "Category": "ring"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "price": 2000,
+            "isFeature": true,
+            "Category": "earring"
+        }
+    ]
+}
