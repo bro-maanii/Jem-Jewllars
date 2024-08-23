@@ -10,7 +10,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-black text-white  flex justify-between  items-center p-2 ">
+    <div className="bg-black text-white  p-2 ">
+      <div className="w-full max-w-6xl mx-auto flex justify-between  items-center ">
       <div className=" hidden md:flex w-full">
         <ul className="hidden md:flex  sm:gap-x-7 ">
           <li className="text-base hover:delay-100 hover:scale-110 hover:font-bold  ">
@@ -156,6 +157,7 @@ const Navbar = () => {
           </div>
         </>
       )}
+    </div>
     </div>
   );
 };

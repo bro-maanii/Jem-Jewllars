@@ -14,6 +14,7 @@ function Feature_product() {
   const FeatureItems : Iproduct[]=ProductData.products.filter((product) => product.isFeature === true);
   return (
     <div className="py-4  bg-orange-300">
+      <div className="w-full max-w-6xl mx-auto">
       <h4 className="text-2xl text-center font-bold">
         Feature Product
       </h4>
@@ -33,7 +34,7 @@ function Feature_product() {
                     alt="product"
                     width={50}
                     height={50}
-                    className="w-28 xs:w-52 xs:h-52 object-cover rounded-lg"
+                    className="w-28 xs:w-52  xs:h-52  object-cover rounded-lg"
                   />
                   <h4 className="text-lg font-bold text-center">{product.name}</h4>
                   <p className="text-gray-500">Price: ${product.price}</p>
@@ -47,6 +48,7 @@ function Feature_product() {
             
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

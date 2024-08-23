@@ -4,7 +4,7 @@ import Image from "next/image"
 export default function Footer() {
   return (
     <footer className="bg-muted py-4 text-muted-foreground">
-      <div className="container flex items-center justify-between">
+      <div className="container flex items-center justify-between w-full max-w-7xl mx-auto">
         <Link href="#" className="flex items-center gap-2" prefetch={false}>
           <Image src="/logo.png" alt="LOGO" width={24} height={24} className="h-8 w-8 rounded-full" />
           <span className="text-lg font-semibold">Jam Jewelry</span>
