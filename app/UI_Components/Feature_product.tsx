@@ -34,7 +34,7 @@ function Feature_product() {
                     alt="product"
                     width={50}
                     height={50}
-                    className="w-28 xs:w-52  xs:h-52  object-cover rounded-lg"
+                    className="w-28 xs:w-52  xs:h-52 mx-auto object-cover rounded-lg"
                   />
                   <h4 className="text-lg font-bold text-center">{product.name}</h4>
                   <p className="text-gray-500">Price: ${product.price}</p>
