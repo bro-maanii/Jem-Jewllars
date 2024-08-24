@@ -37,13 +37,13 @@ const Navbar = () => {
                 }`}
               >
                 <li className="text-lg">
-                  <Link href="/category/rings">Rings</Link>
+                  <Link href="/Category/Ring">Rings</Link>
                 </li>
                 <li className="text-lg ">
-                  <Link href="/category/earrings">Earrings</Link>
+                  <Link href="/Category/EarRing">Earrings</Link>
                 </li>
                 <li className="text-lg ">
-                  <Link href="/category/bracelets">Bracelets</Link>
+                  <Link href="/Category/Barcelets">Bracelets</Link>
                 </li>
               </ul>
             </li>
@@ -179,7 +179,7 @@ const Navbar = () => {
                     <Link href="/Category/EarRing" onClick={()=>setMenu(false)}>Earrings</Link>
                   </li>
                   <li className="text-xl pb-3">
-                    <Link href="/Category/Barcelet" onClick={()=>setMenu(false)}>Bracelets</Link>
+                    <Link href="/Category/Barcelets" onClick={()=>setMenu(false)}>Bracelets</Link>
                   </li>
                 </ul>
               </li>

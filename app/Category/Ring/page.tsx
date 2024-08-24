@@ -1,6 +1,7 @@
 import React from "react";
 import ProductData from '@/Product_Data/Data.json'
 import Image from "next/image";
+import Link from "next/link";
 
 function page() {
     const RingProducts=ProductData.products.filter((product)=>product.Category==='ring')
@@ -20,6 +21,7 @@ function page() {
               {
                 RingProducts.map((product) => (
                   <div key={product.id} className="m-2 p-4 px-6 text-white rounded-md bg-black">
+                    <Link href={`/Product/${product.id}`} className="text-white">
                     <Image
                       src="/logo.png"
                       alt="product"
@@ -32,6 +34,7 @@ function page() {
                     <button className="bg-orange-900 text-white py-1 px-2 sm:py-2 sm:px-4 rounded-md">
                       Add to Cart
                     </button>
+                    </Link>
                   </div>
                 ))
               }
