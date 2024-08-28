@@ -62,6 +62,7 @@ const Navbar = () => {
         />
         {/* Cart */}
         <div className="hidden md:flex justify-end w-full">
+          <Link href="/Cart">
           <svg
             width="40px"
             height="40px"
@@ -88,6 +89,7 @@ const Navbar = () => {
               />
             </g>
           </svg>
+          </Link>
         </div>
 
         {/* Menu */}
