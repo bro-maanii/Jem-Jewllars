@@ -1,12 +1,13 @@
 "use client";
-import { DropletsIcon } from "lucide-react";
+import { Circle} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [storedItem,setStoredItem] = useState([])
 
   const handleNav = () => {
     setMenu(!menu);
@@ -15,6 +16,13 @@ const Navbar = () => {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Safe to use `localStorage` now
+      var stored = JSON.parse(localStorage.getItem("CartData") || "[]");
+      setStoredItem(stored)
+    }
+  }, []);
 
   return (
     <div className="bg-black text-white p-2">
@@ -48,7 +56,7 @@ const Navbar = () => {
               </ul>
             </li>
             <li className="text-lg ">
-              <Link href="/contact-us">Contact Us</Link>
+              <Link href="/Contact-us">Contact Us</Link>
             </li>
           </ul>
         </div>
@@ -63,6 +71,10 @@ const Navbar = () => {
         {/* Cart */}
         <div className="hidden md:flex justify-end w-full">
           <Link href="/Cart">
+          {
+            (storedItem.length>0)?(<span className="bg-red-600 absolute rounded-full w-auto"><Circle className="w-auto h-3 bg-red-500 rounded-full"/></span>):null
+          }
+          
           <svg
             width="40px"
             height="40px"

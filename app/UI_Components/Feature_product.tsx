@@ -3,7 +3,7 @@ import ProductData from '../../Product_Data/Data.json'
 import Image from "next/image";
  
 interface Iproduct {
-  id: number;
+  id: string;
   name: string;
   price: number;
   isFeature: boolean;

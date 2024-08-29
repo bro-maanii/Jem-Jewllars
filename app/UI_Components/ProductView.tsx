@@ -4,10 +4,26 @@ import Image from "next/image"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { useState } from "react";
+import { addItemToCart } from "../ReduxTK/CartSlice/CartSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../ReduxTK/store";
 
-export default function ProductView({params}: {params: {slug: string}}) {
+// ProductView Component interface
+interface ProductViewProps {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+}
+
+export default function ProductView(props: ProductViewProps) {
   const [activeImg, setActiveImg] = useState("/placeholder-user.jpg")
-  console.log(params.slug)
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleAddToCart = () => {
+    dispatch(addItemToCart( {id: props.id, name: props.name, price: props.price} ));
+    console.log("Added to cart",{id: props.id, name: props.name, price: props.price});
+  };
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto py-8 px-4">
       <div className="grid mx-auto gap-4">
@@ -53,8 +69,8 @@ export default function ProductView({params}: {params: {slug: string}}) {
         </div>
       </div>
       <div className="flex flex-col justify-center gap-4">
-        <h1 className="text-3xl font-bold">Acme Circles T-Shirt</h1>
-        <p className="text-muted-foreground">60% combed ringspun cotton/40% polyester jersey tee.</p>
+        <h1 className="text-3xl font-bold">{props.name}</h1>
+        <p className="text-muted-foreground">{props.id}</p>
         <div className="flex items-center gap-2">
           <StarIcon className="w-5 h-5 fill-primary" />
           <StarIcon className="w-5 h-5 fill-primary" />
@@ -62,7 +78,7 @@ export default function ProductView({params}: {params: {slug: string}}) {
           <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
           <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
         </div>
-        <div className="text-4xl font-bold">$99</div>
+        <div className="text-4xl font-bold">${props.price}</div>
           <div className="grid gap-2">
             <Label htmlFor="quantity" className="text-base">
               Quantity
@@ -80,7 +96,7 @@ export default function ProductView({params}: {params: {slug: string}}) {
               </SelectContent>
             </Select>
           </div>
-          <Button size="lg">Add to cart</Button>
+          <Button size="lg" onClick={handleAddToCart}>Add to cart</Button>
         
       </div>
     </div>
