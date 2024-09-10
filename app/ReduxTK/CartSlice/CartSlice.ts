@@ -5,6 +5,7 @@ interface CartItem {
   id: string;
   name: string;
   price: number;
+  quantity: number;
 }
 
 interface CartState {
@@ -31,18 +32,25 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItemToCart: (state, action: PayloadAction<CartItem>) => {
+      if (state.items.some((item) => item.id === action.payload.id)) {
+        state.items = state.items.map((item) =>
+          item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('CartData', JSON.stringify(state.items));
+        }
+        return;
+      }
       state.items.push(action.payload);
       if (typeof window !== 'undefined') {
         localStorage.setItem('CartData', JSON.stringify(state.items));
       }
-      window.location.reload()
     },
     removeItemFromCart: (state, action: PayloadAction<{ id: string }>) => {
       state.items = state.items.filter((item) => item.id !== action.payload.id);
       if (typeof window !== 'undefined') {
         localStorage.setItem('CartData', JSON.stringify(state.items));
       }
-      window.location.reload()
     },
   },
 });

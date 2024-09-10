@@ -11,9 +11,11 @@ import { removeItemFromCart } from "../ReduxTK/CartSlice/CartSlice";
 type ItemType = {
   id: string;
   price: number;
+  quantity: number;
 };
 
 function CartView() {
+  
   const [items, setItems] = useState<ItemType[]>([]);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -27,7 +29,12 @@ function CartView() {
 
   const handleRemoveToCart = (id: string) => {
     dispatch(removeItemFromCart({ id }));
-    window.location.reload();
+    if (typeof window !== "undefined") {
+      // Safe to use `localStorage` now
+      const storedItems = JSON.parse(localStorage.getItem("CartData") || "[]");
+      setItems(storedItems);
+    }
+    // router.refresh();
   };
 
   const [formData, setFormData] = useState({
@@ -84,7 +91,7 @@ function CartView() {
                     Product Price: <span>{item.price}</span>
                   </p>
                   <p>
-                    Product Quantity: <span>3</span>
+                    Product Quantity: <span>{item.quantity}</span>
                   </p>
                   <Button
                     className="bg-red-600"

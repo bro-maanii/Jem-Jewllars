@@ -7,6 +7,8 @@ import { useState } from "react";
 import { addItemToCart } from "../ReduxTK/CartSlice/CartSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../ReduxTK/store";
+import { useRouter } from "next/navigation";
+
 
 // ProductView Component interface
 interface ProductViewProps {
@@ -14,15 +16,19 @@ interface ProductViewProps {
   name: string;
   description: string;
   price: number;
+  quantity: number;
 }
 
 export default function ProductView(props: ProductViewProps) {
+  const router = useRouter();
   const [activeImg, setActiveImg] = useState("/placeholder-user.jpg")
   const dispatch = useDispatch<AppDispatch>();
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
-    dispatch(addItemToCart( {id: props.id, name: props.name, price: props.price} ));
-    console.log("Added to cart",{id: props.id, name: props.name, price: props.price});
+    dispatch(addItemToCart( {id: props.id, name: props.name, price: props.price, quantity: quantity} ));
+    router.push("/Cart");
+    // console.log("Added to cart",{id: props.id, name: props.name, price: props.price});
   };
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto py-8 px-4">
@@ -79,23 +85,23 @@ export default function ProductView(props: ProductViewProps) {
           <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
         </div>
         <div className="text-4xl font-bold">${props.price}</div>
-          <div className="grid gap-2">
+            <div className="grid gap-2">
             <Label htmlFor="quantity" className="text-base">
               Quantity
             </Label>
-            <Select defaultValue="1">
+            <Select defaultValue="1" onValueChange={(value) => setQuantity(parseInt(value))}>
               <SelectTrigger className="w-24">
-                <SelectValue placeholder="Select" />
+              <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="1">1</SelectItem>
-                <SelectItem value="2">2</SelectItem>
-                <SelectItem value="3">3</SelectItem>
-                <SelectItem value="4">4</SelectItem>
-                <SelectItem value="5">5</SelectItem>
+              <SelectItem value="1">1</SelectItem>
+              <SelectItem value="2">2</SelectItem>
+              <SelectItem value="3">3</SelectItem>
+              <SelectItem value="4">4</SelectItem>
+              <SelectItem value="5">5</SelectItem>
               </SelectContent>
             </Select>
-          </div>
+            </div>
           <Button size="lg" onClick={handleAddToCart}>Add to cart</Button>
         
       </div>
