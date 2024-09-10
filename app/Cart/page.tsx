@@ -1,8 +1,11 @@
+import CartView from "../UI_Components/CartView"
 
 
 function page() {
   return (
-    <div>page</div>
+    <div>
+      <CartView />
+    </div>
   )
 }
 
