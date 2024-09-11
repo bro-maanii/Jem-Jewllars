@@ -1,23 +1,30 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import axios from "axios"
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AppDispatch } from "../ReduxTK/store";
 import { useDispatch } from "react-redux";
 import { removeItemFromCart } from "../ReduxTK/CartSlice/CartSlice";
+import { useRouter } from "next/navigation";
 
 // Define the ItemType type
-type ItemType = {
+interface ItemType  {
   id: string;
   price: number;
   quantity: number;
 };
 
+
 function CartView() {
-  
+  const router = useRouter();
   const [items, setItems] = useState<ItemType[]>([]);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const subTotal :number = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  // const total :number = subTotal + ((subTotal>1000)? 0 : 100);]
+  
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -43,6 +50,8 @@ function CartView() {
     city: "",
     postalCode: "",
     country: "",
+    product: [] as ItemType[],
+    total : 0
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,22 +59,30 @@ function CartView() {
     setFormData({
       ...formData,
       [name]: value,
+      product: items,
+      total: subTotal + ((subTotal>1000)? 0 : 100)
     });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
     console.log(formData);
+    e.preventDefault();
+    setFormSubmitted(true);
+    localStorage.clear();
+    setItems([]);
+    
     // Handle the form submission (e.g., send data to the server)
   };
 
   return (
+    <>
+    {items.length === 0 ? (
+      <>
+      <h1 className="flex justify-center items-center text-center font-bold text-4xl min-h-screen">Cart is Empty</h1>
+      </>
+    ) : (
     <div className="w-full max-w-6xl mx-auto py-6 grid md:grid-flow-col gap-10">
       <div>
-        {items.length === 0 ? (
-          <h1 className="text-center font-bold text-4xl">Cart is Empty</h1>
-        ) : (
-          <>
             {items.map((item: ItemType) => (
               <div
                 key={item.id}
@@ -102,10 +119,7 @@ function CartView() {
                 </div>
               </div>
             ))}
-          </>
-        )}
       </div>
-
       <form
         className="md:border-l-2 px-5 flex flex-col justify-center gap-y-6"
         onSubmit={handleSubmit}
@@ -186,14 +200,25 @@ function CartView() {
           </h2>
           <div className="text-xl flex flex-col gap-4">
             <p>
-              Subtotal: <span className="font-bold float-right">200</span>
+              Subtotal: <span className="font-bold float-right">
+                {
+                  subTotal
+                }
+              </span>
             </p>
             <p>
-              Shipping: <span className="font-bold float-right">+ 200</span>
+              Shipping: <span className="font-bold float-right">
+                {
+                  (subTotal>1000)? 0 : 100
+                }
+              </span>
             </p>
             <hr />
             <p>
-              Total Payment: <span>400</span>
+              Total Payment: <span>
+                {
+                  subTotal + ((subTotal>1000)? 0 : 100)
+                }</span>
             </p>
           </div>
         </div>
@@ -204,7 +229,8 @@ function CartView() {
           Submit
         </Button>
       </form>
-    </div>
+    </div>)}
+    </>
   );
 }
 
