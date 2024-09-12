@@ -23,6 +23,15 @@ function CartView() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const subTotal :number = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    city: "",
+    postalCode: "",
+    country: "",
+    product: [] as ItemType[],
+    total : 0
+  });
   // const total :number = subTotal + ((subTotal>1000)? 0 : 100);]
   
 
@@ -32,7 +41,7 @@ function CartView() {
       const storedItems = JSON.parse(localStorage.getItem("CartData") || "[]");
       setItems(storedItems);
     }
-  }, []);
+  }, [formData]);
 
   const handleRemoveToCart = (id: string) => {
     dispatch(removeItemFromCart({ id }));
@@ -44,16 +53,6 @@ function CartView() {
     // router.refresh();
   };
 
-  const [formData, setFormData] = useState({
-    name: "",
-    address: "",
-    city: "",
-    postalCode: "",
-    country: "",
-    product: [] as ItemType[],
-    total : 0
-  });
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -64,15 +63,18 @@ function CartView() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    console.log(formData);
-    e.preventDefault();
-    setFormSubmitted(true);
-    localStorage.clear();
-    setItems([]);
-    
-    // Handle the form submission (e.g., send data to the server)
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();  // Make sure this is called first to prevent default form behavior
+    try {
+      await axios.post('/api/orderSubmission', formData);  // Send form data to the server
+      // Clear cart data in local storage and reset the items state
+      localStorage.removeItem('CartData');  // Clear only CartData instead of clearing all localStorage
+      setItems([]);  // Reset the cart items state
+    } catch (error) {
+      console.log(error);
+    }
   };
+  
 
   return (
     <>
