@@ -102,7 +102,7 @@
             "id": "15",
             "name": "Product 15",
             "price": 1500,
-            "isFeature": false,
+            "isFeature": true,
             "Category": "bracelet"
         },
         {
@@ -123,14 +123,14 @@
             "id": "18",
             "name": "Product 18",
             "price": 1800,
-            "isFeature": false,
+            "isFeature": true,
             "Category": "bracelet"
         },
         {
             "id": "19",
             "name": "Product 19",
             "price": 1900,
-            "isFeature": false,
+            "isFeature": true,
             "Category": "ring"
         },
         {
