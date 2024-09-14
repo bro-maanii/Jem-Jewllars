@@ -4,7 +4,7 @@ import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Button } from "@/components/ui/button"
-import { ShoppingCart } from "lucide-react"
+import { ShoppingCart, View } from "lucide-react"
 import ProductData from '@/Product_Data/Data.json';
 import Image from "next/image"
 import Link from "next/link"
@@ -23,8 +23,7 @@ export function FeaturedProductsCarouselComponent() {
   const featuredProducts: Iproduct[]=ProductData.products.filter((product) => product.isFeature === true);
 
   return (
-    <div className="w-[90%] max-w-6xl mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-6 text-center">Featured Products</h2>
+    <div className="w-[90%] max-w-6xl mx-auto px-4 py-8 ">
       <div className="flex justify-center">
       <Carousel
         opts={{
@@ -43,7 +42,7 @@ export function FeaturedProductsCarouselComponent() {
                   <h3 className="font-semibold font-mono text-lg  mb-2">{product.name}</h3>
                   <p className="text-primary font-bold mb-4">${product.price.toFixed(2)}</p>
                   <Button className="w-full">
-                    <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+                    View Product
                   </Button>
                 </CardContent>
               </Card>

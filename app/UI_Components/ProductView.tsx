@@ -28,26 +28,27 @@ export default function ProductView(props: ProductViewProps) {
   const handleAddToCart = () => {
     dispatch(addItemToCart( {id: props.id, name: props.name, price: props.price, quantity: quantity} ));
     router.push("/Cart");
-    // console.log("Added to cart",{id: props.id, name: props.name, price: props.price});
   };
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto py-8 px-4">
       <div className="grid mx-auto gap-4">
-        <Image
-          src={activeImg}
-          alt="Product Image"
-          width={800} 
-          height={600}
-          className="w-full h-[400px] md:h-[600px] object-cover rounded-lg"
-          style={{ aspectRatio: "800/600", objectFit: "cover" }}
-        />
+        <div className="border-4">
+          <Image
+            src={activeImg}
+            alt="Product Image"
+            width={800} 
+            height={600}
+            className="w-full h-[400px] md:h-[600px] object-cover "
+            style={{ aspectRatio: "800/600", objectFit: "cover" }}
+          />
+        </div>
         <div className="grid grid-cols-3 w-4/5 gap-2">
           <div onClick={()=>setActiveImg("/placeholder-user.jpg")} className="border w-4/5  rounded-lg overflow-hidden">
             <Image
               src="/placeholder-user.jpg"
               alt="Product Thumbnail"
-              width={100}
-              height={100}
+              width={500}
+              height={500}
               className="w-full h-[100px] object-cover"
               style={{ aspectRatio: "150/150", objectFit: "cover" }}
             />
@@ -56,8 +57,8 @@ export default function ProductView(props: ProductViewProps) {
             <Image
               src="/heroImage.png"
               alt="Product Thumbnail"
-              width={100}
-              height={100}
+              width={500}
+              height={500}
               className="w-full h-[100px] object-cover"
               style={{ aspectRatio: "150/150", objectFit: "cover" }}
             />
@@ -66,25 +67,18 @@ export default function ProductView(props: ProductViewProps) {
             <Image
               src="/placeholder-user.jpg"
               alt="Product Thumbnail"
-              width={100}
-              height={100}
+              width={500}
+              height={500}
               className="w-full h-[100px] object-cover"
               style={{ aspectRatio: "150/150", objectFit: "cover" }}
             />
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center gap-4">
-        <h1 className="text-3xl font-bold">{props.name}</h1>
-        <p className="text-muted-foreground">{props.id}</p>
-        <div className="flex items-center gap-2">
-          <StarIcon className="w-5 h-5 fill-primary" />
-          <StarIcon className="w-5 h-5 fill-primary" />
-          <StarIcon className="w-5 h-5 fill-primary" />
-          <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
-          <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
-        </div>
-        <div className="text-4xl font-bold">${props.price}</div>
+      <div className="flex flex-col justify-center gap-4 mx-auto">
+        <h1 className="text-2xl font-bold">Name: {props.name}</h1>
+        <div className="text-xl font-bold">Product Price: ${props.price}</div>
+        <p className="font-extralight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, ducimus. Id, rem, ad quia magni earum odio quisquam quaerat cum provident maxime ullam! Nobis quia vel obcaecati ex inventore debitis.</p>
             <div className="grid gap-2">
             <Label htmlFor="quantity" className="text-base">
               Quantity
@@ -106,24 +100,5 @@ export default function ProductView(props: ProductViewProps) {
         
       </div>
     </div>
-  )
-}
-
-function StarIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
   )
 }

@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'grid-pattern': 'linear-gradient(#cce4f7 1px, transparent 1px), linear-gradient(90deg, #cce4f7 1px, transparent 1px)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
