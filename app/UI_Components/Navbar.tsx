@@ -1,11 +1,12 @@
 "use client";
-import { Circle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -22,12 +23,17 @@ const Navbar = () => {
     <div className="bg-black text-white p-2">
       <div className="w-full max-w-6xl mx-auto flex justify-between items-center">
         <div className="hidden md:flex w-full">
-          <ul className="hidden md:flex sm:gap-x-7">
-            <li className="text-lg">
+          <ul className="hidden md:flex md:gap-x-2 lg:gap-6">
+            <li className={`text-base ${(pathname === '/' ) ? "underline decoration-4 decoration-blue-400 font-semibold  " : ""}`}>
               <Link href="/">Home</Link>
             </li>
-            <li className="text-lg relative" onClick={handleDropdownToggle}>
-              <Link href="#">Category</Link>
+            <li className={`text-base ${(pathname === '/All-Products' ) ? "font-semibold underline decoration-4 decoration-blue-400" : ""}`}>
+                <Link href="/All-Products" onClick={() => setMenuOpen(false)}>
+                  All Products
+                </Link>
+              </li>
+            <li className={`text-base cursor-pointer relative ${(pathname === '/Category/Ring' || pathname === '/Category/EarRing' || pathname === '/Category/Barcelets') ? "underline decoration-4 font-semibold  decoration-blue-400" : ""}`} onClick={handleDropdownToggle}>
+              Category
               <ul
                 className={`absolute w-40 text-black bg-white p-2 mt-2 transform transition-all duration-300 ease-in-out ${
                   dropdownOpen
@@ -46,7 +52,7 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
-            <li className="text-lg">
+            <li className={`text-base ${(pathname === '/Contact-us' ) ? "underline decoration-4 decoration-blue-400 font-semibold " : ""}`}>
               <Link href="/Contact-us">Contact Us</Link>
             </li>
           </ul>
@@ -54,7 +60,7 @@ const Navbar = () => {
         <Image
           src="/logo.png"
           alt="Logo"
-          className="dark:invert bg-white shadow-lg rounded-full"
+          className={`${menuOpen ? "hidden": "opacity-100 dark:invert bg-white shadow-lg rounded-full" }`}
           width={70}
           height={20}
           priority
@@ -92,7 +98,7 @@ const Navbar = () => {
         </div>
 
         {/* Menu */}
-        <div onClick={handleNavToggle} className="md:hidden">
+        <div onClick={handleNavToggle} className={`${menuOpen? "hidden" : "md:hidden"}`}>
           <svg
             width="50px"
             height="50px"
@@ -120,15 +126,15 @@ const Navbar = () => {
         </div>
 
         {menuOpen && (
-          <div className="absolute top-0 left-0 w-full h-screen bg-black flex flex-col justify-center pl-6">
+            <div  className="top-0 left-0 w-full h-screen bg-black flex flex-col justify-center pl-6">
             <div
-              className="absolute top-3 right-6 text-3xl cursor-pointer"
+              className="absolute top-8 right-6 text-3xl cursor-pointer"
               onClick={handleNavToggle}
             >
               X
             </div>
             {/* Cart */}
-            <div className="absolute top-3 left-6 text-xl" >
+            <div className="absolute top-8 left-6 text-xl" >
             <Link href="/Cart"  onClick={() => setMenuOpen(false)}>
               <svg
                 width="40px"
@@ -160,13 +166,18 @@ const Navbar = () => {
             </div>
 
             <ul className="flex flex-col gap-5">
-              <li className="text-2xl">
+              <li className={`text-2xl ${(pathname === '/' ) ? "font-semibold underline decoration-4 decoration-blue-400" : ""}`}>
                 <Link href="/" onClick={() => setMenuOpen(false)}>
                   Home
                 </Link>
               </li>
-              <li className="text-2xl relative" onClick={handleDropdownToggle}>
-                <Link href="#">Category</Link>
+              <li className={`text-2xl ${(pathname === '/All-Products' ) ? "font-semibold underline decoration-4 decoration-blue-400" : ""}`}>
+                <Link href="/All-Products" onClick={() => setMenuOpen(false)}>
+                  All Products
+                </Link>
+              </li>
+              <li className={`text-2xl  relative cursor-pointer ${(pathname === '/Category/Ring' || pathname === '/Category/EarRing' || pathname === '/Category/Barcelets') ? "font-semibold underline decoration-4 decoration-blue-400" : ""}`} onClick={handleDropdownToggle}>
+                Category
                 <ul
                   className={`absolute w-40 text-black bg-white p-2 mt-2 transform transition-all duration-300 ease-in-out ${
                     dropdownOpen
@@ -200,13 +211,13 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-              <li className="text-2xl">
+              <li className={`text-2xl ${(pathname === '/Contact-us' ) ? "font-semibold underline decoration-4 decoration-blue-400" : ""}`}>
                 <Link href="/Contact-us" onClick={() => setMenuOpen(false)}>
                   Contact Us
                 </Link>
               </li>
             </ul>
-          </div>
+            </div>
         )}
       </div>
     </div>

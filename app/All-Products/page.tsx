@@ -6,11 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 function page() {
-    const braceletProducts=ProductData.products.filter((product)=>product.Category==='bracelet')
+    const allProducts=ProductData.products
   return (
     <div className='w-full max-w-6xl mx-auto py-3'>
         <h4 className="py-4 text-3xl sm:text-4xl text-center font-bold">
-        Barcelets
+        All Products
         </h4>
         <p className="text-center font-mono max-w-3xl mx-auto py-4">
           Discover our featured product of the month, crafted with premium
@@ -19,11 +19,11 @@ function page() {
         </p>
         <div>
           {
-            braceletProducts.length === 0 ? (
+            allProducts.length === 0 ? (
               <h1 className=" text-4xl text-center pt-1 pb-96 text-red-500">No Products Found</h1>
             ):
             <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
-              {braceletProducts.map((product) => (
+              {allProducts.map((product) => (
               <Link href={`/Product/${product.id}`} key={product.id}>
               <Card className="m-1 h-96">
                 <CardContent className="flex flex-col items-center p-6">

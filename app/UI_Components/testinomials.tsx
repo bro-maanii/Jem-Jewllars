@@ -1,6 +1,7 @@
 "use client";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import Link from "next/link";
 
 export function Testinomials() {
   return (
@@ -13,7 +14,7 @@ export function Testinomials() {
           </p>
         </div>
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3 animate-fade-in-up">
-          <div className="rounded-lg bg-card p-6 shadow-lg">
+          <div className="rounded-lg bg-card p-6 shadow-lg ">
             <div className="flex items-center">
               <Avatar className="mr-4 h-12 w-12 border-2 border-primary">
                 <AvatarImage src="/placeholder-user.jpg" alt="@shadcn" />
@@ -82,7 +83,12 @@ export function Testinomials() {
           </div>
         </div>
         <div className="mt-12 text-center animate-fade-in-up">
-          <Button size="lg">Explore Our Collection</Button>
+          <Link href="/Contact-us">
+            <Button size="default" className="w-fit px-10 text-lg">Your Feedback</Button>
+          </Link>
+            <p className="mt-4 text-muted-foreground">
+            We value your feedback. Click the button above to rate your experience with our jewelry.
+            </p>
         </div>
       </div>
     </section>

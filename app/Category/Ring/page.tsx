@@ -2,43 +2,44 @@ import React from "react";
 import ProductData from '@/Product_Data/Data.json'
 import Image from "next/image";
 import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 function page() {
     const RingProducts=ProductData.products.filter((product)=>product.Category==='ring')
   return (
     <div className='w-full max-w-6xl mx-auto py-3'>
-        <h4 className="text-3xl sm:text-6xl text-center font-bold">
-          Ring
+        <h4 className="py-4 text-3xl sm:text-4xl text-center font-bold">
+        Rings
         </h4>
-        <p className="text-center max-w-3xl mx-auto">
+        <p className="text-center font-mono max-w-3xl mx-auto py-4">
           Discover our featured product of the month, crafted with premium
           materials and designed to offer exceptional comfort and style. Perfect
           for any occasion, it&apos;s a must-have in your collection!
         </p>
         <div>
-          
+          {
+            RingProducts.length === 0 ? (
+              <h1 className=" text-4xl text-center pt-1 pb-96 text-red-500">No Products Found</h1>
+            ):
             <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
-              {
-                RingProducts.map((product) => (
-                  <div key={product.id} className="m-2 p-4 px-6 text-white rounded-md bg-black">
-                    <Link href={`/Product/${product.id}`} className="text-white">
-                    <Image
-                      src="/logo.png"
-                      alt="product"
-                      width={50}
-                      height={50}
-                      className="w-36 h-32 sm:w-52 sm:h-52 mx-auto object-cover rounded-lg"
-                    />
-                    <h4 className="text-lg font-bold text-center">{product.name}</h4>
-                    <p className="text-gray-500">Price: ${product.price}</p>
-                    <button className="bg-orange-900 text-white py-1 px-2 sm:py-2 sm:px-4 rounded-md">
-                      Add to Cart
-                    </button>
-                    </Link>
-                  </div>
-                ))
-              }
+              {RingProducts.map((product) => (
+              <Link href={`/Product/${product.id}`} key={product.id}>
+              <Card className="m-1 h-96">
+                <CardContent className="flex flex-col items-center p-6">
+                  <Image src='/logo.png' alt={product.name} width={200} height={200} loading="lazy" className="w-full h-48 object-fill mb-4 rounded-md" />
+                  <h3 className="font-semibold font-mono text-lg  mb-2">{product.name}</h3>
+                  <p className="text-primary font-bold mb-4">${product.price.toFixed(2)}</p>
+                  <Button className="w-full">
+                    View Product
+                  </Button>
+                </CardContent>
+              </Card>
+              </Link>
+          ))}
             </div>
+          }
+            
           </div>
         
     </div>
