@@ -10,8 +10,8 @@ interface ItemType {
     name: string;
     address: string;
     city: string;
-    postalCode: string;
-    country: string;
+    contact: number;
+    email: string;
     product: ItemType[];
     total: number;
   }
