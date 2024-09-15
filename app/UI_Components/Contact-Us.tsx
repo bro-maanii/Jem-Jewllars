@@ -28,7 +28,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+    <div className="flex items-center justify-center">
       <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-lg m-7">
         <div className="flex justify-center">
           <Image src="/logo.png" alt="ContactUS" width={500} height={500} className="w-80 h-64 flex " />
