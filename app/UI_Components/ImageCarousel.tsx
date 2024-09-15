@@ -42,6 +42,8 @@ export function ImageCarousel() {
           onMouseLeave={() => {
             plugin.current.play();
           }}
+          onTouchStart={() => plugin.current.stop()}
+          onTouchEnd={() => plugin.current.play()}
           className="w-[90%] "
         >
           <CarouselContent>

@@ -36,6 +36,8 @@ export function FeaturedProductsCarouselComponent() {
         ]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={()=>{ plugin.current.play()}}
+        onTouchStart={() => plugin.current.stop()}
+        onTouchEnd={() => plugin.current.play()}
         className="w-[90%] justify-center "
       >
         <CarouselContent>
