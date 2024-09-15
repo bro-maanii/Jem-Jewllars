@@ -17,10 +17,10 @@ function Feature_product() {
         <p className="text-center max-w-3xl mx-auto text-gray-700 px-4">
           Explore our exclusive featured products, handpicked for their
           exquisite craftsmanship. This month&apos;s selection includes elegant{" "}
-          <strong>rings</strong>, stylish <strong>earrings</strong>, and luxurious{" "}
-          <strong>bracelets</strong>, perfect for any occasion. Designed with
-          premium materials to bring sophistication to your style, these pieces
-          are a must-have in your jewelry collection.
+          <strong>rings</strong>, stylish <strong>earrings</strong>, and
+          luxurious <strong>bracelets</strong>, perfect for any occasion.
+          Designed with premium materials to bring sophistication to your style,
+          these pieces are a must-have in your jewelry collection.
         </p>
 
         <FeaturedProductsCarouselComponent />

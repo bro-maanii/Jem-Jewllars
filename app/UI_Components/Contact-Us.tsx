@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import { useState } from "react";
-import Image from 'next/image';
+import Image from "next/image";
+import axios from "axios";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,9 @@ const ContactUs = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -19,8 +22,15 @@ const ContactUs = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Make sure this is called first to prevent default form behavior
+    try {
+      await axios.post("/api/feedback", formData); // Send form data to the server
+      // Clear cart data in local storage and reset the items state
+      localStorage.removeItem("CartData"); // Clear only CartData instead of clearing all localStorage
+    } catch (error) {
+      console.log(error);
+    }
     // Perform form submission logic here (e.g., send data to an API)
     console.log("Form submitted:", formData);
     setIsSubmitted(true);
@@ -31,18 +41,33 @@ const ContactUs = () => {
     <div className="flex items-center justify-center">
       <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-lg m-7">
         <div className="flex justify-center">
-          <Image src="/logo.png" alt="ContactUS" width={500} height={500} className="w-80 h-64 flex " />
+          <Image
+            src="/logo.png"
+            alt="ContactUS"
+            width={500}
+            height={500}
+            loading="lazy"
+            className="w-80 h-64 flex "
+          />
         </div>
-        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Contact Us</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
+          Contact Us
+        </h2>
         <p className="mt-4 text-muted-foreground text-center pb-3">
-            We value your feedback. Please fill out the form below, and we will get back to you as soon as possible.
+          We value your feedback. Please fill out the form below, and we will
+          get back to you as soon as possible.
         </p>
         {isSubmitted ? (
-          <div className="text-center text-green-500 text-lg">Thank you for your message!</div>
+          <div className="text-center text-green-500 text-lg">
+            Thank you for your message!
+          </div>
         ) : (
           <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
             <div className="mb-4 ">
-              <label htmlFor="name" className="text-center text-sm font-medium text-gray-700">
+              <label
+                htmlFor="name"
+                className="text-center text-sm font-medium text-gray-700"
+              >
                 Name:
               </label>
               <input
@@ -54,7 +79,10 @@ const ContactUs = () => {
                 required
                 className="mt-1 w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
-              <label htmlFor="email" className=" text-center text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className=" text-center text-sm font-medium text-gray-700"
+              >
                 Email:
               </label>
               <input
@@ -68,7 +96,10 @@ const ContactUs = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="message" className=" text-sm font-medium text-gray-700">
+              <label
+                htmlFor="message"
+                className=" text-sm font-medium text-gray-700"
+              >
                 Message:
               </label>
               <textarea

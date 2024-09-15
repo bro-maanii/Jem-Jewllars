@@ -1,22 +1,13 @@
 import nodemailer from 'nodemailer';
 
-interface ItemType {
-  id: string;
-  price: number;
-  quantity: number;
-}
 
 interface DataType {
   name: string;
-  address: string;
-  city: string;
-  contact: number;
   email: string;
-  product: ItemType[];
-  total: number;
+  message: string;
 }
 
-export const sendMail = async (to: string, subject: string, data: DataType) => {
+export const contactmail = async (to: string, subject: string, data: DataType) => {
   try {
     // Step 1: Create reusable transporter object using the default SMTP transport
     const transporter = nodemailer.createTransport({
@@ -36,27 +27,10 @@ export const sendMail = async (to: string, subject: string, data: DataType) => {
       to: to,
       subject: subject,
       html: `
-        <h1>Order Details</h1>
+        <h1>FeedBack - Query </h1>
         <p>Name: ${data.name}</p>
-        <p>Address: ${data.address}</p>
-        <p>City: ${data.city}</p>
-        <p>Contact Number: ${data.contact}</p>
-        <p>Email Address: ${data.email}</p>
-        <h2>Products</h2>
-        <ul>
-          ${data.product
-            .map(
-              (item) => `
-                <div>
-                <p>item id : ${item.id}</p> 
-                <p>quantiy : ${item.quantity}</p>  
-                <p>total price: ${item.price}</p>
-                </div>
-              `
-            )
-            .join('')} 
-        </ul>
-        <h3>Total: $${data.total}</h3>
+        <p>Email: ${data.email}</p>
+        <p>Message: ${data.message}</p>
       `,
     });
 

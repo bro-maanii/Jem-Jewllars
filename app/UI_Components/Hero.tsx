@@ -35,6 +35,7 @@ function Hero() {
           alt="Exquisite Jewelry Collection – Rings, Earrings, Bracelets"
           width={1000}
           height={1000}
+          loading="lazy"
           className="w-full h-72 md:h-80 object-cover rounded-3xl"
         />
       </div>

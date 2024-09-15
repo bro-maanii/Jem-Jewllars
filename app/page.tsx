@@ -1,36 +1,38 @@
 import Hero from "./UI_Components/Hero";
 import Feature_product from "./UI_Components/Feature_product";
 import { Testimonials } from "./UI_Components/testinomials";
-import {ImageCarousel} from "./UI_Components/ImageCarousel";
+import { ImageCarousel } from "./UI_Components/ImageCarousel";
 import Link from "next/link";
-
 
 export default function Home() {
   const whatsappIconStyle: React.CSSProperties = {
-    position: 'fixed',
-    bottom: '100px',
-    right: '20px',
-    backgroundColor: '#25D366',
-    color: 'white',
-    borderRadius: '50%',
-    padding: '10px',
-    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
+    position: "fixed",
+    bottom: "100px",
+    right: "20px",
+    backgroundColor: "#25D366",
+    color: "white",
+    borderRadius: "50%",
+    padding: "10px",
+    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
   };
 
   return (
-      <>
-        <Hero />
-        <ImageCarousel />
-        <Feature_product  />
-        <Testimonials />
-        <Link href="https://wa.me/923062662261" target="_blank" style={whatsappIconStyle}>
+    <>
+      <Hero />
+      <ImageCarousel />
+      <Feature_product />
+      <Testimonials />
+      <Link
+        href="https://wa.me/923273900970"
+        target="_blank"
+        style={whatsappIconStyle}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
           y="0px"
           width={40}
           height={40}
-          
           viewBox="0 0 48 48"
         >
           <path
@@ -56,8 +58,7 @@ export default function Home() {
             clipRule="evenodd"
           />
         </svg>
-        </Link>
-      
-      </>
+      </Link>
+    </>
   );
 }
