@@ -1,7 +1,7 @@
 import Hero from "./UI_Components/Hero";
 import Feature_product from "./UI_Components/Feature_product";
-import { Testinomials } from "./UI_Components/testinomials";
-import { WashingMachine } from "lucide-react";
+import { Testimonials } from "./UI_Components/testinomials";
+import {ImageCarousel} from "./UI_Components/ImageCarousel";
 import Link from "next/link";
 
 
@@ -20,9 +20,10 @@ export default function Home() {
   return (
       <>
         <Hero />
+        <ImageCarousel />
         <Feature_product  />
-        <Testinomials />
-        <Link href="https://wa.me/919999999999" target="_blank" style={whatsappIconStyle}>
+        <Testimonials />
+        <Link href="https://wa.me/923062662261" target="_blank" style={whatsappIconStyle}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
@@ -55,7 +56,6 @@ export default function Home() {
             clipRule="evenodd"
           />
         </svg>
-      
         </Link>
       
       </>

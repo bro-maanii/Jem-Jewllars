@@ -8,6 +8,9 @@ import { ShoppingCart, View } from "lucide-react"
 import ProductData from '@/Product_Data/Data.json';
 import Image from "next/image"
 import Link from "next/link"
+import Autoplay from "embla-carousel-autoplay"
+import { plugin } from "postcss"
+import { useRef } from "react"
 
  
 interface Iproduct {
@@ -21,15 +24,18 @@ interface Iproduct {
 
 export function FeaturedProductsCarouselComponent() {
   const featuredProducts: Iproduct[]=ProductData.products.filter((product) => product.isFeature === true);
-
+  const plugin = useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  )
   return (
     <div className="w-[90%] max-w-6xl mx-auto px-4 py-8 ">
       <div className="flex justify-center">
       <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
+        plugins={[
+          plugin.current,
+        ]}
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={()=>{ plugin.current.play()}}
         className="w-[90%] justify-center "
       >
         <CarouselContent>
